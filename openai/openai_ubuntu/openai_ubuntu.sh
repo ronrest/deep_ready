@@ -36,5 +36,39 @@ virtualenv -p /usr/bin/python${PYTHON_VERSION} ${VIRTUAL_ENV_NAME}
 echo "ENTERING VIRTUALENV"
 . ${VIRTUAL_ENV_ROOT}/${VIRTUAL_ENV_NAME}/bin/activate
 
+
+echo "==========================================================="
+echo "                                   INSTALL PYTHON LIBRARIES"
+echo "==========================================================="
+echo "UPGRADING PIP"
+pip install --upgrade pip
+sudo apt-get update
+
+echo "INSTALLING NUMPY AND SCIPY"
+sudo apt-get install -y libopenblas-dev  # Speeds up numpy/scipy
+sudo apt-get install -y liblapack-dev gfortran # Needed for scipy/numpy
+pip install numpy
+pip install scipy
+# sudo apt-get install -y python-numpy
+
+
+echo "INSTALLING PANDAS"
+sudo apt-get install -y python-tk  # Needed by Pandas
+pip install pytz                   # Needed by pandas
+pip install pandas
+
+# Libraries for image processing
+echo "INSTALLING PILLOW IMAGE PROCESSING LIBRARY"
+sudo apt-get install -y libjpeg-dev libpng12-dev    # Needed by pillow
+pip install Pillow
+
+echo 'INSTALL MATPLOTLIB'
+sudo apt-get build-dep -y matplotlib       # download and build needed dependencies
+pip install -U matplotlib                  # force matplotlib rebuild
+
+echo 'INSTALLING ADITIONAL USEFUL PYTHON LIBRARIES'
+pip install h5py
+
+
 #
 #
