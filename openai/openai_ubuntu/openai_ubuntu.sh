@@ -16,6 +16,11 @@
 #   - https://github.com/openai/universe
 #   - https://docs.docker.com/engine/installation/linux/ubuntulinux/
 #   - https://www.tensorflow.org/get_started/os_setup
+#
+# TODOS
+#   - Allow option to only install some of these things
+#   - Add GPU Tensorflow option
+#   - Support for other
 ################################################################################
 
 # terminate script if any line returns a non-zero exit status
