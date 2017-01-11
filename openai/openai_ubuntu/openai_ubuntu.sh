@@ -1,4 +1,22 @@
 #!/bin/bash
+################################################################################
+# Automated script for setting up OpenAI Gym on Ubuntu.
+# By: Ronny Restrepo
+#
+# STEPS:
+#   - Installs system dependencies
+#   - Installs Docker (which is needed by Open AI)
+#   - Creates a python virtual environment, which installs:
+#   - -  Common useful Python packages for Machine Learning and Image processing
+#   - -  - Tensorflow, Numpy, Scipy, Pandas, Matplotlib and Pillow
+#   - - And OpenAI Universe of course.
+#
+# CREDITS
+# Many of the steps are based on code from the following sources:
+#   - https://github.com/openai/universe
+#   - https://docs.docker.com/engine/installation/linux/ubuntulinux/
+#   - https://www.tensorflow.org/get_started/os_setup
+################################################################################
 
 # terminate script if any line returns a non-zero exit status
 set -e
