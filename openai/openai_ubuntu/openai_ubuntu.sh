@@ -36,6 +36,13 @@ else
     DOCKER_VERSION="${DOCKER_VERSION}~ubuntu-trusty"
     DK_REPO="deb https://apt.dockerproject.org/repo ubuntu-trusty main"
 fi
+
+
+#-------------------------------------------------------------------------------
+#                                                                          START
+#-------------------------------------------------------------------------------
+START_DIR=pwd   # Store Initial Working Directory
+
 echo "==========================================================="
 echo "                            INSTALL THE DEVELOPER LIBRARIES"
 echo "==========================================================="
@@ -165,6 +172,10 @@ echo "                                               FINISHING UP"
 echo "==========================================================="
 echo "EXITING VIRTUALENV"
 deactivate
+
+# Go back to the directory we started off at.
+cd ${START_DIR}
+
 
 #
 #
