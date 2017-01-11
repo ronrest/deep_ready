@@ -159,5 +159,12 @@ echo "==========================================================="
 pip install -e git+https://github.com/openai/universe.git#egg=universe
 
 
+
+echo "==========================================================="
+echo "                                               FINISHING UP"
+echo "==========================================================="
+echo "EXITING VIRTUALENV"
+deactivate
+
 #
 #
