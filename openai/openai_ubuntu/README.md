@@ -1,6 +1,24 @@
 # Automated script for setting up OpenAI Universe on Ubuntu (14.04 abd 16.04)
 By: Ronny Restrepo
 
+## USAGE:
+- Firstly modify any variables to suit your needs by looking at the 
+  variables section below and in the script. 
+- Once you have set the variables to the values you need, simply run 
+  this script from the command line using: 
+  
+        sh openai_ununtu.sh
+
+- Once the script is finished running, you can *source* into the virtual
+  enviroment that was created to start using openai's universe: 
+  
+        source ~/virtualenvs/openai/bin/activate
+  
+  Or if you modified the virtualenvs name or root directory, change this 
+  to the appropriate values. 
+  
+- [Start using](https://github.com/openai/universe#system-overview) OpenAI's Universe. 
+
 
 ## STEPS:
 This script will go through the following steps
@@ -18,17 +36,23 @@ This script will go through the following steps
 - **Docker Version:** 1.12.6-0     (But you can set it to any other version 
   that your package manager has access to)
 
-These values can be set in the VARIABLES section of the script. 
-Aditional settings you can change in the variables section are: 
+## Variables:
+These are the variables that you can change in the script (along with 
+their default values). They appear in the **VARIABLES** section of the 
+script. 
 
-- `VIRTUAL_ENV_NAME`="openai" 
+- `OS_VERSION` = "14.04"
+    - Set up to work with 14.04 and 16.04
+- `PYTHON_VERSION` = "2.7"
+    - Change this to 3.5 if desired.
+- `VIRTUAL_ENV_NAME` = "openai" 
     - The name you want to give your Python virtual environment
-- `VIRTUAL_ENV_ROOT`="~/virtualenvs" 
+- `VIRTUAL_ENV_ROOT` = "~/virtualenvs" 
     - Where your virtual envs are stored.
     - **NOTE:** There should be no trailing forward slash at the end
-- `INSTALL_DOCKER`=true
+- `INSTALL_DOCKER` = true
     - Set to false if you already have docker installed. 
-- `DOCKER_VERSION`="1.12.6-0"
+- `DOCKER_VERSION` = "1.12.6-0"
      - Change to desired version. 
      - **NOTE:** Must be a precise version number that will appear in 
        the package manager of your operating system. 
