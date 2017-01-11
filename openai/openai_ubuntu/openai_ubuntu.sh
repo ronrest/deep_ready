@@ -31,6 +31,8 @@ then
     DOCKER_VERSION="${DOCKER_VERSION}~ubuntu-xenial"
     DK_REPO="deb https://apt.dockerproject.org/repo ubuntu-xenial main"
 else
+    # This next line needed for ubuntu 14.04, but not needed for 16.04
+    sudo add-apt-repository ppa:ubuntu-lxc/lxd-stable  # for newer golang
     DOCKER_VERSION="${DOCKER_VERSION}~ubuntu-trusty"
     DK_REPO="deb https://apt.dockerproject.org/repo ubuntu-trusty main"
 fi
@@ -147,5 +149,15 @@ sudo docker run hello-world
 
 # https://github.com/openai/universe#install-docker
 #docker ps
+
+echo "==========================================================="
+echo "                                INSTALLING OPEN AI UNIVERSE"
+echo "==========================================================="
+#git clone https://github.com/openai/universe.git
+#cd universe
+#pip install -e .
+pip install -e git+https://github.com/openai/universe.git#egg=universe
+
+
 #
 #
