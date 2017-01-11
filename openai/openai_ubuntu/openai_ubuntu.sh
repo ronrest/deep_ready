@@ -1,6 +1,6 @@
 #!/bin/bash
 ################################################################################
-# Automated script for setting up OpenAI Gym on Ubuntu.
+# Automated script for setting up OpenAI Universe on Ubuntu.
 # By: Ronny Restrepo
 #
 # STEPS:
