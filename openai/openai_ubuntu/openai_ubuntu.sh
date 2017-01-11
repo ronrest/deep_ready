@@ -69,9 +69,11 @@ PYTHON_VERSION="2.7"             # Change this to 3.5 if desired.
 VIRTUAL_ENV_NAME="openai"        # Name you want to give your virtualenv
 VIRTUAL_ENV_ROOT="~/virtualenvs" # Where your virtual envs are stored.
                                  # NOTE: no trailing forward slash at the end
+INSTALL_DOCKER=true              # Set to false if you already have docker
 DOCKER_VERSION="1.12.6-0"        # Change to desired version.
                                  # NOTE: Must be a precise version number that
                                  #       will appear in the package manager.
+
 
 # Link to the tensorflow package. Change to desired version
 # depending on operating system, and if you want GPU support
@@ -163,55 +165,66 @@ echo "                                         INSTALL TENSORFLOW"
 echo "==========================================================="
 pip install --upgrade $TF_URL
 
-echo "==========================================================="
-echo "                                             INSTALL DOCKER"
-echo "==========================================================="
-# Instructions from here:
-#   https://docs.docker.com/engine/installation/linux/ubuntulinux/
-sudo apt-get install -y apt-transport-https ca-certificates
 
-echo "ADDING GPG KEY"
-sudo apt-key adv \
-               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
-               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+if [ ${INSTALL_DOCKER} == true ]
+then
+    echo "==========================================================="
+    echo "                                             INSTALL DOCKER"
+    echo "==========================================================="
+    # Instructions from here:
+    #   https://docs.docker.com/engine/installation/linux/ubuntulinux/
+    sudo apt-get install -y apt-transport-https ca-certificates
+
+    echo "ADDING GPG KEY"
+    sudo apt-key adv \
+                   --keyserver hkp://ha.pool.sks-keyservers.net:80 \
+                   --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 
-echo "ADDING DOCKER REPO TO THE PACKAGES LIST"
-echo ${DK_REPO} | sudo tee /etc/apt/sources.list.d/docker.list
+    echo "ADDING DOCKER REPO TO THE PACKAGES LIST"
+    echo ${DK_REPO} | sudo tee /etc/apt/sources.list.d/docker.list
 
-echo "UPDATING PACKAGES LIST"
-sudo apt-get update
+    echo "UPDATING PACKAGES LIST"
+    sudo apt-get update
 
-echo "DEFENDING AGAINST UNMET DEPENDENCIES"
-# First level of defence against potential unmet dependencies errors for
-# "linux-image-extra-virtual"
-sudo apt-get -y install -f
+    echo "DEFENDING AGAINST UNMET DEPENDENCIES"
+    # First level of defence against potential unmet dependencies errors for
+    # "linux-image-extra-virtual"
+    sudo apt-get -y install -f
 
-echo "INSTALL LINUX-IMAGE-EXTRA-* PACKAGES"
-#linux-image-extra-* kernel packages, allows you use the aufs storage driver.
-sudo apt-get install -y linux-image-extra-$(uname -r)
+    echo "INSTALL LINUX-IMAGE-EXTRA-* PACKAGES"
+    #linux-image-extra-* kernel packages, allows you use the aufs storage driver.
+    sudo apt-get install -y linux-image-extra-$(uname -r)
 
-echo "INSTALL LINUX-IMAGE-EXTRA-VIRTUAL PACKAGE"
-# This one could be problematic, see DEBUG section for known issues.
-sudo apt-get install -y linux-image-extra-virtual
+    echo "INSTALL LINUX-IMAGE-EXTRA-VIRTUAL PACKAGE"
+    # This one could be problematic, see DEBUG section for known issues.
+    sudo apt-get install -y linux-image-extra-virtual
 
-echo "INSTALL DOCKER"
-sudo apt-get -y install docker-engine=${DOCKER_VERSION}
+    echo "INSTALL DOCKER"
+    sudo apt-get -y install docker-engine=${DOCKER_VERSION}
 
-## Install the latest version of Docker
-#sudo apt-get install docker-engine
+    ## Install the latest version of Docker
+    #sudo apt-get install docker-engine
 
-## Get list of available versions on apt-get
-#apt-cache madison docker-engine
+    ## Get list of available versions on apt-get
+    #apt-cache madison docker-engine
 
-echo "START THE DOCKER DAEMON"
-sudo service docker start
+    echo "START THE DOCKER DAEMON"
+    sudo service docker start
 
-echo "VERIFYING DOCKER INSTALLATION IS CORRECT"
-sudo docker run hello-world
+    echo "VERIFYING DOCKER INSTALLATION IS CORRECT"
+    sudo docker run hello-world
 
-# https://github.com/openai/universe#install-docker
-#docker ps
+    # https://github.com/openai/universe#install-docker
+    #docker ps
+
+else
+    echo "==========================================================="
+    echo "                               SKIPPING DOCKER INSTALLATION"
+    echo "==========================================================="
+fi
+
+
 
 echo "==========================================================="
 echo "                                INSTALLING OPEN AI UNIVERSE"
@@ -267,3 +280,4 @@ cd ${START_DIR}
 #    NOTE: Make sure you change the number to the version that the error
 #    message was telling you to use.
 #
+
