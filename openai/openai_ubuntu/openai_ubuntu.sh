@@ -11,6 +11,14 @@
 #   - -  - Tensorflow, Numpy, Scipy, Pandas, Matplotlib and Pillow
 #   - - And OpenAI Universe of course.
 #
+# DEFAULTS:
+#    - OS Version    : Ubuntu 14.04 (but you can set it to 16.04)
+#    - Python Version: 2.7          (but you can set it to 3.5)
+#    - Docker Version: 1.12.6-0     (But you can set it to any other version
+#                                    that your package manager has access to)
+#
+#   These values can be set in the VARIABLES section.
+#
 # CREDITS
 # Many of the steps are based on code from the following sources:
 #   - https://github.com/openai/universe
