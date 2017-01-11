@@ -8,10 +8,14 @@ set -e
 #-------------------------------------------------------------------------------
 # Modify these variables to suit your needs.
 
+OS_VERSION="14.04"               # Set up to work with 14.04 and 16.04
 PYTHON_VERSION="2.7"             # Change this to 3.5 if desired.
 VIRTUAL_ENV_NAME="openai"        # Name you want to give your virtualenv
 VIRTUAL_ENV_ROOT="~/virtualenvs" # Where your virtual envs are stored.
                                  # NOTE: no trailing forward slash at the end
+DOCKER_VERSION="1.12.6-0"        # Change to desired version.
+                                 # NOTE: Must be a precise version number that
+                                 #       will appear in the package manager.
 
 # Link to the tensorflow package. Change to desired version
 # depending on operating system, and if you want GPU support
@@ -19,6 +23,17 @@ VIRTUAL_ENV_ROOT="~/virtualenvs" # Where your virtual envs are stored.
 TF_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.1-cp27-none-linux_x86_64.whl
 
 
+#-------------------------------------------------------------------------------
+#                                                        OS DEPENDENT OPERATIONS
+#-------------------------------------------------------------------------------
+if [ ${OS_VERSION} == "16.04" ]
+then
+    DOCKER_VERSION="${DOCKER_VERSION}~ubuntu-xenial"
+    DK_REPO="deb https://apt.dockerproject.org/repo ubuntu-xenial main"
+else
+    DOCKER_VERSION="${DOCKER_VERSION}~ubuntu-trusty"
+    DK_REPO="deb https://apt.dockerproject.org/repo ubuntu-trusty main"
+fi
 echo "==========================================================="
 echo "                            INSTALL THE DEVELOPER LIBRARIES"
 echo "==========================================================="
@@ -83,5 +98,54 @@ echo "                                         INSTALL TENSORFLOW"
 echo "==========================================================="
 pip install --upgrade $TF_URL
 
+echo "==========================================================="
+echo "                                             INSTALL DOCKER"
+echo "==========================================================="
+# Instructions from here:
+#   https://docs.docker.com/engine/installation/linux/ubuntulinux/
+sudo apt-get install -y apt-transport-https ca-certificates
+
+echo "ADDING GPG KEY"
+sudo apt-key adv \
+               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
+               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+
+echo "ADDING DOCKER REPO TO THE PACKAGES LIST"
+echo ${DK_REPO} | sudo tee /etc/apt/sources.list.d/docker.list
+
+echo "UPDATING PACKAGES LIST"
+sudo apt-get update
+
+echo "DEFENDING AGAINST UNMET DEPENDENCIES"
+# First level of defence against potential unmet dependencies errors for
+# "linux-image-extra-virtual"
+sudo apt-get -y install -f
+
+echo "INSTALL LINUX-IMAGE-EXTRA-* PACKAGES"
+#linux-image-extra-* kernel packages, allows you use the aufs storage driver.
+sudo apt-get install -y linux-image-extra-$(uname -r)
+
+echo "INSTALL LINUX-IMAGE-EXTRA-VIRTUAL PACKAGE"
+# This one could be problematic, see DEBUG section for known issues.
+sudo apt-get install -y linux-image-extra-virtual
+
+echo "INSTALL DOCKER"
+sudo apt-get -y install docker-engine=${DOCKER_VERSION}
+
+## Install the latest version of Docker
+#sudo apt-get install docker-engine
+
+## Get list of available versions on apt-get
+#apt-cache madison docker-engine
+
+echo "START THE DOCKER DAEMON"
+sudo service docker start
+
+echo "VERIFYING DOCKER INSTALLATION IS CORRECT"
+sudo docker run hello-world
+
+# https://github.com/openai/universe#install-docker
+#docker ps
 #
 #
