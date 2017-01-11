@@ -34,7 +34,7 @@
 #   to get it work by modifying some bits of code. Each step
 #   is clearly explained.
 #
-#   Evan though this script allows you to set whatever
+#   Even though this script allows you to set whatever
 #   version of Python you have installed in your system,
 #   the openai system may not work on versions other than
 #   python 2.7 and 3.5
