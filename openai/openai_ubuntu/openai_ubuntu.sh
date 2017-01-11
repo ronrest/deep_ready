@@ -12,6 +12,13 @@ PYTHON_VERSION="2.7"             # Change this to 3.5 if desired.
 VIRTUAL_ENV_NAME="openai"        # Name you want to give your virtualenv
 VIRTUAL_ENV_ROOT="~/virtualenvs" # Where your virtual envs are stored.
                                  # NOTE: no trailing forward slash at the end
+
+# Link to the tensorflow package. Change to desired version
+# depending on operating system, and if you want GPU support
+# List of available links here: https://www.tensorflow.org/get_started/os_setup
+TF_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.1-cp27-none-linux_x86_64.whl
+
+
 echo "==========================================================="
 echo "                            INSTALL THE DEVELOPER LIBRARIES"
 echo "==========================================================="
@@ -69,6 +76,12 @@ pip install -U matplotlib                  # force matplotlib rebuild
 echo 'INSTALLING ADITIONAL USEFUL PYTHON LIBRARIES'
 pip install h5py
 
+
+
+echo "==========================================================="
+echo "                                         INSTALL TENSORFLOW"
+echo "==========================================================="
+pip install --upgrade $TF_URL
 
 #
 #
