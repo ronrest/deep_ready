@@ -19,6 +19,15 @@
 #
 #   These values can be set in the VARIABLES section.
 #
+# VIRTUALENV
+#   By default it also creates a Python Virtual Environment
+#   called "openai" located in the "~/virtualenvs" directory
+#   (which is created automatically). All the python packages
+#   are installed in this virtualenv.
+#   You can specify a different directory where you store
+#   your virtualenvs and the name of the new virtualenv in
+#   the VARIABLES section.
+#
 # CREDITS
 # Many of the steps are based on code from the following sources:
 #   - https://github.com/openai/universe
