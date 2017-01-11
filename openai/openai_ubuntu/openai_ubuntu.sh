@@ -28,6 +28,11 @@
 #   your virtualenvs and the name of the new virtualenv in
 #   the VARIABLES section.
 #
+# KNOWN ISSUES:
+#   - Scroll right down to the very bottom to the DEBUG
+#     section to see error messages that might pop up
+#     and how to fix them.
+#
 # CREDITS
 # Many of the steps are based on code from the following sources:
 #   - https://github.com/openai/universe
@@ -217,5 +222,37 @@ deactivate
 cd ${START_DIR}
 
 
+
+################################################################################
+# DEBUG
+################################################################################
+
+# ------------------------------------------------------------------------------
+#                                                       UNMET DEPENDENCIES ERROR
+# ------------------------------------------------------------------------------
+# When installing `linux-image-extra-virtual`, if you get an error message
+# such as the following:
 #
+#   linux-image-extra-virtual : Depends: linux-image-generic (= 3.13.0.107.115)
+#   but it is not going to be installed
+#   E: Unable to correct problems, you have held broken packages.
+#
+# FIXES:
+# 1. Run the following command:
+#
+#       sudo apt-get -y install -f
+#
+#    Then pick up where you left off before. If this gives the same error
+#    message, then try the next fix.
+#
+# 2. The error message gives you a version of `linux-image-generic` that it is
+#    looking for, but not finding, and not wanting to install.
+#    You can explicitly install this version on the command line. Lets say
+#    the version it was looking for was 3.13.0.107.115, then we can force
+#    it to install that version using:
+#
+#       sudo apt-get install linux-image-generic=3.13.0.107.115
+#
+#    NOTE: Make sure you change the number to the version that the error
+#    message was telling you to use.
 #
