@@ -1,4 +1,4 @@
-# Automated script for setting up OpenAI Universe on Ubuntu (14.04 abd 16.04)
+# Automated script for setting up OpenAI Universe on Ubuntu (14.04 and 16.04)
 By: Ronny Restrepo
 
 ## USAGE:
