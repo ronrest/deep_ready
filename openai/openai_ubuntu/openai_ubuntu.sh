@@ -28,6 +28,17 @@
 #   your virtualenvs and the name of the new virtualenv in
 #   the VARIABLES section.
 #
+# LIMITATIONS
+#   Currently it is not set up to support other versions of
+#   ubuntu other than 14.04 and 16.04, but it should be easy
+#   to get it work by modifying some bits of code. Each step
+#   is clearly explained.
+#
+#   Evan though this script allows you to set whatever
+#   version of Python you have installed in your system,
+#   the openai system may not work on versions other than
+#   python 2.7 and 3.5
+#
 # KNOWN ISSUES:
 #   - Scroll right down to the very bottom to the DEBUG
 #     section to see error messages that might pop up
