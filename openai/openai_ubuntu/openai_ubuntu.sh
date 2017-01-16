@@ -215,6 +215,11 @@ then
     echo "VERIFYING DOCKER INSTALLATION IS CORRECT"
     sudo docker run hello-world
 
+    echo "ADD USER TO DOCKER GROUP"
+    # Steps taken from here: http://askubuntu.com/a/477554/640905
+    sudo groupadd -f docker
+    sudo gpasswd -a ${USER} docker
+
     # https://github.com/openai/universe#install-docker
     #docker ps
 
@@ -244,6 +249,11 @@ deactivate
 
 # Go back to the directory we started off at.
 cd ${START_DIR}
+
+# FEEDBACK
+echo "If you installed docker using this script, then you will "
+echo "need to REBOOT your computer so user priveleges to the "
+echo "Docker group will take effect"
 
 
 
