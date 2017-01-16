@@ -8,8 +8,9 @@ By: Ronny Restrepo
   this script from the command line using: 
   
         sh openai_ununtu.sh
-
-- Once the script is finished running, you can *source* into the virtual
+- REBOOT your computer if Docker was installed during this script 
+  (default option)
+- Once you have rebooted, you can *source* into the virtual
   enviroment that was created to start using openai's universe: 
   
         source ~/virtualenvs/openai/bin/activate
@@ -17,10 +18,14 @@ By: Ronny Restrepo
   Or if you modified the virtualenvs name or root directory, change this 
   to the appropriate values. 
   
-- [Start using](https://github.com/openai/universe#system-overview) OpenAI's Universe. 
+- [Start using it](http://ronny.rest/tutorials/module/openai_001/openai_first_test)
 
+If you wish to go through a tutorial that explains each of the steps 
+carried out by the script, then you can go to 
+[this guided tutorial](/tutorials/module/openai_001/openai_install/) on 
+how to get things set up. 
 
-## STEPS:
+## STEPS TAKEN BY SCRIPT:
 This script will go through the following steps
 - Installs system dependencies
 - Installs Docker (which is needed by Open AI) This can be disabled 
@@ -81,7 +86,7 @@ python 2.7 and 3.5
 ## TODOS
 - Allow option to only install some of these things
 - Add GPU Tensorflow option
-- Support for other
+- Support for other Ubuntu versions. 
 
 ## DEBUGGING:
 ### UNMET DEPENDENCIES ERROR
