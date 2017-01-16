@@ -3,7 +3,7 @@
 # Automated script for setting up OpenAI Universe on Ubuntu.
 # By: Ronny Restrepo
 #
-# STEPS:
+# STEPS TAKEN BY SCRIPT:
 #   - Installs system dependencies
 #   - Installs Docker (which is needed by Open AI)
 #   - Creates a python virtual environment, which installs:
