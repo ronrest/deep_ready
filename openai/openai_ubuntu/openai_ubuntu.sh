@@ -84,7 +84,7 @@ TF_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.1-cp2
 #-------------------------------------------------------------------------------
 #                                                        OS DEPENDENT OPERATIONS
 #-------------------------------------------------------------------------------
-if [ ${OS_VERSION} == "16.04" ]
+if [ ${OS_VERSION} = "16.04" ]
 then
     DOCKER_VERSION="${DOCKER_VERSION}~ubuntu-xenial"
     DK_REPO="deb https://apt.dockerproject.org/repo ubuntu-xenial main"
@@ -166,7 +166,7 @@ echo "==========================================================="
 pip install --upgrade $TF_URL
 
 
-if [ ${INSTALL_DOCKER} == true ]
+if [ ${INSTALL_DOCKER} = true ]
 then
     echo "==========================================================="
     echo "                                             INSTALL DOCKER"
