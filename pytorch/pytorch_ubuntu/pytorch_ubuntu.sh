@@ -45,10 +45,11 @@ set -e
 #-------------------------------------------------------------------------------
 # Modify these variables to suit your needs.
 
-PYTHON_VERSION="2.7"             # Change this to 3.5 if desired.
-VIRTUAL_ENV_NAME="pytorch"       # Name you want to give your virtualenv
-VIRTUAL_ENV_ROOT="~/virtualenvs" # Where your virtual envs are stored.
-                                 # NOTE: no trailing forward slash at the end
+PYTHON_VERSION="2.7"                   # Change this to 3.5 if desired.
+VIRTUAL_ENV_NAME="pytorch"             # Name you want to give your virtualenv
+VIRTUAL_ENV_ROOT="${HOME}/virtualenvs" # Where your virtual envs are stored.
+                                       # NOTE: no trailing forward slash at
+                                       # the end
 
 
 #-------------------------------------------------------------------------------

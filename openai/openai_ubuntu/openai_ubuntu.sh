@@ -64,11 +64,12 @@ set -e
 #-------------------------------------------------------------------------------
 # Modify these variables to suit your needs.
 
-OS_VERSION="14.04"               # Set up to work with 14.04 and 16.04
-PYTHON_VERSION="2.7"             # Change this to 3.5 if desired.
-VIRTUAL_ENV_NAME="openai"        # Name you want to give your virtualenv
-VIRTUAL_ENV_ROOT="~/virtualenvs" # Where your virtual envs are stored.
-                                 # NOTE: no trailing forward slash at the end
+OS_VERSION="14.04"                      # Set up to work with 14.04 and 16.04
+PYTHON_VERSION="2.7"                    # Change this to 3.5 if desired.
+VIRTUAL_ENV_NAME="openai"               # Name you want to give your virtualenv
+VIRTUAL_ENV_ROOT="${HOME}/virtualenvs"  # Where your virtual envs are stored.
+                                        # NOTE: no trailing forward slash at
+                                        # the end
 INSTALL_DOCKER=true              # Set to false if you already have docker
 DOCKER_VERSION="1.12.6-0"        # Change to desired version.
                                  # NOTE: Must be a precise version number that
